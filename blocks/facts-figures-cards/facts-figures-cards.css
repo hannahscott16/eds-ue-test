@@ -1,0 +1,357 @@
+/* Facts and Figures Cards Block */
+
+/* Block container */
+.block.facts-figures-cards {
+  margin: 2rem 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Cards container */
+.facts-figures-cards-container {
+  display: grid;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+/* Card rows */
+.facts-figures-cards-row {
+  display: flex;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+/* Individual card cells */
+.facts-figures-cards-cell {
+  background: linear-gradient(135deg, var(--background-color) 0%, #f7f6f5 100%);
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  padding: 3.5rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px;
+  justify-content: center;
+}
+
+/* Card size variants */
+.facts-figures-cards-cell.size-col-4 {
+  flex: 1 1 calc(25% - 1.875rem);
+  max-width: 480px;
+}
+
+.facts-figures-cards-cell.size-col-5 {
+  flex: 1 1 calc(20% - 2rem);
+  max-width: 610px;
+}
+
+/* Card titles */
+.facts-figures-cards-title {
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+/* Title variants */
+.facts-figures-cards-cell.variant-h4-default .facts-figures-cards-title {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  max-width: 45ch;
+}
+
+.facts-figures-cards-cell.variant-h3-highlighted .facts-figures-cards-title {
+  color: var(--background-color);
+  font-size: 2.75rem;
+  line-height: 3.5rem;
+  max-width: 45ch;
+}
+
+.facts-figures-cards-cell.variant-h5-short .facts-figures-cards-title,
+.facts-figures-cards-cell.variant-h5-long .facts-figures-cards-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.facts-figures-cards-cell.variant-h5-short .facts-figures-cards-title {
+  max-width: 80ch;
+}
+
+.facts-figures-cards-cell.variant-h5-long .facts-figures-cards-title {
+  max-width: 200ch;
+}
+
+/* Card text */
+.facts-figures-cards-text {
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.facts-figures-cards-cell.variant-h3-highlighted .facts-figures-cards-text {
+  color: var(--background-color);
+}
+
+/* Background variants */
+.facts-figures-cards-cell.warm-gradient {
+  background: linear-gradient(135deg, var(--background-color) 0%, #f7f6f5 59.896%);
+}
+
+.facts-figures-cards-cell.blue-gradient {
+  background: linear-gradient(135deg, #f7f6f5 0%, var(--background-color) 100%);
+}
+
+/* Highlighted variant with blue gradient */
+.facts-figures-cards-cell.variant-h3-highlighted {
+  background: linear-gradient(200deg, #0c2863, rgb(159, 0, 165));
+}
+
+.facts-figures-cards-cell.highlighted {
+  background: linear-gradient(200deg, #0c2863, rgb(159, 0, 165));
+}
+
+.facts-figures-cards-cell.highlighted .facts-figures-cards-title,
+.facts-figures-cards-cell.highlighted .facts-figures-cards-text {
+  color: var(--background-color);
+}
+
+/* Centered layout option */
+.facts-figures-cards-cell.centered {
+  align-items: center;
+  text-align: center;
+}
+
+/* Card hover effects */
+.facts-figures-cards-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Character count overflow warning */
+.facts-figures-cards-text[data-overflow="true"] {
+  border-left: 3px solid #fd4100;
+  padding-left: 1rem;
+  background-color: rgba(253, 65, 0, 0.05);
+}
+
+/* Responsive Design */
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .facts-figures-cards-row {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .facts-figures-cards-cell {
+    padding: 2.5rem;
+    min-height: 180px;
+  }
+  
+  .facts-figures-cards-cell.size-col-4,
+  .facts-figures-cards-cell.size-col-5 {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: none;
+  }
+  
+  .facts-figures-cards-cell.variant-h4-default .facts-figures-cards-title {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h3-highlighted .facts-figures-cards-title {
+    font-size: 2.25rem;
+    line-height: 3rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h5-short .facts-figures-cards-title,
+  .facts-figures-cards-cell.variant-h5-long .facts-figures-cards-title {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .block.facts-figures-cards {
+    margin: 1.5rem 0;
+  }
+  
+  .facts-figures-cards-container {
+    gap: 1.5rem;
+  }
+  
+  .facts-figures-cards-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .facts-figures-cards-cell {
+    padding: 2rem;
+    min-height: 160px;
+  }
+  
+  .facts-figures-cards-cell.size-col-4,
+  .facts-figures-cards-cell.size-col-5 {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+  
+  .facts-figures-cards-cell.variant-h4-default .facts-figures-cards-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h3-highlighted .facts-figures-cards-title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h5-short .facts-figures-cards-title,
+  .facts-figures-cards-cell.variant-h5-long .facts-figures-cards-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .facts-figures-cards-text {
+    font-size: var(--body-font-size-xs);
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .facts-figures-cards-cell {
+    padding: 1.5rem;
+    min-height: 140px;
+  }
+  
+  .facts-figures-cards-cell.variant-h4-default .facts-figures-cards-title {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h3-highlighted .facts-figures-cards-title {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+  
+  .facts-figures-cards-cell.variant-h5-short .facts-figures-cards-title,
+  .facts-figures-cards-cell.variant-h5-long .facts-figures-cards-title {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+  }
+}
+
+/* Animation support */
+@media (prefers-reduced-motion: reduce) {
+  .facts-figures-cards-cell {
+    transition: none;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .facts-figures-cards-cell:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .facts-figures-cards-cell {
+    border: 2px solid var(--text-color);
+  }
+  
+  .facts-figures-cards-cell.variant-h3-highlighted,
+  .facts-figures-cards-cell.highlighted {
+    border-color: var(--background-color);
+  }
+}
+
+/* Print styles */
+@media print {
+  .facts-figures-cards-cell {
+    break-inside: avoid;
+    box-shadow: none;
+    padding: 1rem;
+  }
+  
+  .facts-figures-cards-row {
+    display: block;
+  }
+  
+  .facts-figures-cards-cell {
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+}
+
+/* Focus styles for accessibility */
+.facts-figures-cards-cell:focus-within {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.facts-figures-cards-cell[tabindex]:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Link styles within cards */
+.facts-figures-cards-cell a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.facts-figures-cards-cell a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.facts-figures-cards-cell.variant-h3-highlighted a,
+.facts-figures-cards-cell.highlighted a {
+  color: var(--background-color);
+}
+
+.facts-figures-cards-cell.variant-h3-highlighted a:hover,
+.facts-figures-cards-cell.highlighted a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Grid layout alternatives */
+.facts-figures-cards-container.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.facts-figures-cards-container.grid-layout .facts-figures-cards-row {
+  display: contents;
+}
+
+.facts-figures-cards-container.grid-layout .facts-figures-cards-cell {
+  max-width: none;
+}
+
+/* Alignment variants for multi-card layouts */
+.facts-figures-cards-container.align-3-cards {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.facts-figures-cards-container.align-4-cards {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.facts-figures-cards-container.align-6-cards {
+  max-width: 1920px;
+  margin: 0 auto;
+}

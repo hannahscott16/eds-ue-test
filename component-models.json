@@ -180,6 +180,106 @@
     ]
   },
   {
+    "id": "facts-figures-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Card Title",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Card Text",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "select",
+        "name": "variant",
+        "label": "Card Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "H4 Default",
+            "value": "h4-default"
+          },
+          {
+            "name": "H3 Highlighted",
+            "value": "h3-highlighted"
+          },
+          {
+            "name": "H5 Short Text",
+            "value": "h5-short"
+          },
+          {
+            "name": "H5 Long Text",
+            "value": "h5-long"
+          }
+        ],
+        "value": "h4-default"
+      },
+      {
+        "component": "select",
+        "name": "size",
+        "label": "Card Size",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "4 Columns",
+            "value": "col-4"
+          },
+          {
+            "name": "5 Columns",
+            "value": "col-5"
+          }
+        ],
+        "value": "col-4"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Card Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Layout",
+            "children": [
+              {
+                "name": "Default",
+                "value": ""
+              },
+              {
+                "name": "Highlighted",
+                "value": "highlighted"
+              },
+              {
+                "name": "Centered",
+                "value": "centered"
+              }
+            ]
+          },
+          {
+            "name": "Background",
+            "children": [
+              {
+                "name": "Warm White Gradient",
+                "value": "warm-gradient"
+              },
+              {
+                "name": "Blue Gradient",
+                "value": "blue-gradient"
+              }
+            ]
+          }
+        ],
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
