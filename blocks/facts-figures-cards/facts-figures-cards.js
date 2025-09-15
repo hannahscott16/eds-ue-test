@@ -11,145 +11,59 @@ const config = {
   breakpoints: {
     mobile: 768,
     tablet: 1024,
-    desktop: 1200
+    desktop: 1200,
   },
   maxCharacters: {
     h4: 45,
     h5Short: 80,
-    h5Long: 200
-  }
+    h5Long: 200,
+  },
 };
 
 /**
- * CSS selectors used throughout the block
- */
-const selectors = {
-  cardTitle: '.facts-figures-cards-title',
-  cardText: '.facts-figures-cards-text',
-  cardContainer: '.facts-figures-cards-container'
-};
-
-/**
- * Main decoration function for the Facts and Figures Cards block
+ * Get block options from CSS classes
  * @param {HTMLElement} block - The block DOM element
+ * @returns {string[]} Array of option classes
  */
-export default function decorate(block) {
-  if (!block) return;
-
-  try {
-    // Add semantic classes and structure
-    addSemanticClasses(block);
-    
-    // Process card content based on variant
-    processCardContent(block);
-    
-    // Add accessibility features
-    addAccessibilityFeatures(block);
-    
-    // Add animation support
-    addScrollAnimations(block);
-    
-    // Add analytics tracking
-    addAnalyticsTracking(block);
-    
-  } catch (error) {
-    console.error('Facts and Figures Cards block initialization failed:', error);
-  }
+function getBlockOptions(block) {
+  return [...block.classList].filter((c) => !['block', 'facts-figures-cards', 'facts-figures-cards-container'].includes(c));
 }
 
 /**
- * Add semantic CSS classes to block elements
- * @param {HTMLElement} block - The block DOM element
+ * Get variant from block classes
+ * @param {string[]} classes - Array of CSS classes
+ * @returns {string} The variant name
  */
-function addSemanticClasses(block) {
-  // Add container wrapper
-  block.classList.add('facts-figures-cards-container');
-  
-  // Process each card row
-  const rows = [...block.children];
-  rows.forEach((row, index) => {
-    row.classList.add('facts-figures-cards-row');
-    row.setAttribute('data-row-index', index);
-    
-    // Process cells within each row
-    const cells = [...row.children];
-    cells.forEach((cell, cellIndex) => {
-      cell.classList.add('facts-figures-cards-cell');
-      cell.setAttribute('data-cell-index', cellIndex);
-      
-      // Add semantic classes to content elements
-      const title = cell.querySelector('h1, h2, h3, h4, h5, h6');
-      if (title) {
-        title.classList.add('facts-figures-cards-title');
-      }
-      
-      const text = cell.querySelector('p');
-      if (text) {
-        text.classList.add('facts-figures-cards-text');
-      }
-    });
-  });
+function getVariantFromClasses(classes) {
+  const variantClass = classes.find((c) => c.startsWith('variant-'));
+  return variantClass ? variantClass.replace('variant-', '') : 'h4-default';
 }
 
 /**
- * Process card content based on variant and size
- * @param {HTMLElement} block - The block DOM element
+ * Get size from block classes
+ * @param {string[]} classes - Array of CSS classes
+ * @returns {string} The size name
  */
-function processCardContent(block) {
-  // Get block options from CSS classes
-  const blockOptions = getBlockOptions(block);
-  const variant = getVariantFromClasses(blockOptions);
-  const size = getSizeFromClasses(blockOptions);
-  
-  // Apply variant-specific processing
-  const cells = block.querySelectorAll('.facts-figures-cards-cell');
-  cells.forEach(cell => {
-    processCardCell(cell, variant, size);
-  });
+function getSizeFromClasses(classes) {
+  const sizeClass = classes.find((c) => c.startsWith('col-'));
+  return sizeClass || 'col-4';
 }
 
 /**
- * Process individual card cell based on variant
- * @param {HTMLElement} cell - The cell DOM element
- * @param {string} variant - The card variant
- * @param {string} size - The card size
+ * Get block variant for analytics
+ * @param {HTMLElement} block - The block DOM element
+ * @returns {string} The block variant
  */
-function processCardCell(cell, variant, size) {
-  const title = cell.querySelector('.facts-figures-cards-title');
-  const text = cell.querySelector('.facts-figures-cards-text');
-  
-  if (!title) return;
-  
-  // Apply variant-specific styling classes
-  cell.classList.add(`variant-${variant}`);
-  cell.classList.add(`size-${size}`);
-  
-  // Process title based on variant
-  switch (variant) {
-    case 'h4-default':
-      processH4Title(title, text);
-      break;
-    case 'h3-highlighted':
-      processH3Title(title, text);
-      break;
-    case 'h5-short':
-    case 'h5-long':
-      processH5Title(title, text, variant);
-      break;
-    default:
-      processH4Title(title, text);
-  }
-  
-  // Add character count validation
-  validateCharacterCount(text, variant);
+function getBlockVariant(block) {
+  const options = getBlockOptions(block);
+  return options.length > 0 ? options.join(' ') : 'default';
 }
 
 /**
  * Process H4 title variant
  * @param {HTMLElement} title - The title element
- * @param {HTMLElement} text - The text element
  */
-function processH4Title(title, text) {
+function processH4Title(title) {
   // Ensure title is H4
   if (title.tagName !== 'H4') {
     const h4 = document.createElement('h4');
@@ -162,9 +76,8 @@ function processH4Title(title, text) {
 /**
  * Process H3 highlighted title variant
  * @param {HTMLElement} title - The title element
- * @param {HTMLElement} text - The text element
  */
-function processH3Title(title, text) {
+function processH3Title(title) {
   // Ensure title is H3
   if (title.tagName !== 'H3') {
     const h3 = document.createElement('h3');
@@ -177,10 +90,9 @@ function processH3Title(title, text) {
 /**
  * Process H5 title variant
  * @param {HTMLElement} title - The title element
- * @param {HTMLElement} text - The text element
  * @param {string} variant - The specific H5 variant
  */
-function processH5Title(title, text, variant) {
+function processH5Title(title, variant) {
   // Ensure title is H5
   if (title.tagName !== 'H5') {
     const h5 = document.createElement('h5');
@@ -188,7 +100,7 @@ function processH5Title(title, text, variant) {
     h5.className = title.className;
     title.parentNode.replaceChild(h5, title);
   }
-  
+
   // Add variant-specific class
   title.classList.add(variant === 'h5-short' ? 'h5-short' : 'h5-long');
 }
@@ -200,10 +112,10 @@ function processH5Title(title, text, variant) {
  */
 function validateCharacterCount(text, variant) {
   if (!text) return;
-  
+
   const textContent = text.textContent.trim();
   let maxChars;
-  
+
   switch (variant) {
     case 'h4-default':
       maxChars = config.maxCharacters.h4;
@@ -217,11 +129,99 @@ function validateCharacterCount(text, variant) {
     default:
       return;
   }
-  
+
   if (textContent.length > maxChars) {
+    // eslint-disable-next-line no-console
     console.warn(`Text length (${textContent.length}) exceeds recommended maximum (${maxChars}) for variant ${variant}`);
     text.setAttribute('data-overflow', 'true');
   }
+}
+
+/**
+ * Process individual card cell based on variant
+ * @param {HTMLElement} cell - The cell DOM element
+ * @param {string} variant - The card variant
+ * @param {string} size - The card size
+ */
+function processCardCell(cell, variant, size) {
+  const title = cell.querySelector('.facts-figures-cards-title');
+  const text = cell.querySelector('.facts-figures-cards-text');
+
+  if (!title) return;
+
+  // Apply variant-specific styling classes
+  cell.classList.add(`variant-${variant}`);
+  cell.classList.add(`size-${size}`);
+
+  // Process title based on variant
+  switch (variant) {
+    case 'h4-default':
+      processH4Title(title);
+      break;
+    case 'h3-highlighted':
+      processH3Title(title);
+      break;
+    case 'h5-short':
+    case 'h5-long':
+      processH5Title(title, variant);
+      break;
+    default:
+      processH4Title(title);
+  }
+
+  // Add character count validation
+  validateCharacterCount(text, variant);
+}
+
+/**
+ * Process card content based on variant and size
+ * @param {HTMLElement} block - The block DOM element
+ */
+function processCardContent(block) {
+  // Get block options from CSS classes
+  const blockOptions = getBlockOptions(block);
+  const variant = getVariantFromClasses(blockOptions);
+  const size = getSizeFromClasses(blockOptions);
+
+  // Apply variant-specific processing
+  const cells = block.querySelectorAll('.facts-figures-cards-cell');
+  cells.forEach((cell) => {
+    processCardCell(cell, variant, size);
+  });
+}
+
+/**
+ * Add semantic CSS classes to block elements
+ * @param {HTMLElement} block - The block DOM element
+ */
+function addSemanticClasses(block) {
+  // Add container wrapper
+  block.classList.add('facts-figures-cards-container');
+
+  // Process each card row
+  const rows = [...block.children];
+  rows.forEach((row, index) => {
+    row.classList.add('facts-figures-cards-row');
+    row.setAttribute('data-row-index', index);
+
+    // Process cells within each row
+    const cells = [...row.children];
+    cells.forEach((cell, cellIndex) => {
+      cell.classList.add('facts-figures-cards-cell');
+      cell.setAttribute('data-cell-index', cellIndex);
+
+      // Add semantic classes to content elements
+      const title = cell.querySelector('h1, h2, h3, h4, h5, h6');
+      if (title) {
+        title.classList.add('facts-figures-cards-title');
+      }
+
+      const text = cell.querySelector('p');
+      if (text) {
+        text.classList.add('facts-figures-cards-text');
+      }
+    });
+  });
 }
 
 /**
@@ -232,29 +232,43 @@ function addAccessibilityFeatures(block) {
   // Add ARIA label to the block
   block.setAttribute('role', 'region');
   block.setAttribute('aria-label', 'Facts and Figures');
-  
+
   // Add semantic structure for screen readers
   const titles = block.querySelectorAll('.facts-figures-cards-title');
   titles.forEach((title, index) => {
     if (!title.id) {
       title.id = `facts-figure-${index + 1}`;
     }
-    
+
     // Associate text with title for screen readers
     const text = title.parentNode.querySelector('.facts-figures-cards-text');
     if (text) {
       text.setAttribute('aria-describedby', title.id);
     }
   });
-  
+
   // Add keyboard navigation support if interactive
   const cells = block.querySelectorAll('.facts-figures-cards-cell');
-  cells.forEach(cell => {
+  cells.forEach((cell) => {
     const links = cell.querySelectorAll('a');
     if (links.length > 0) {
       cell.setAttribute('tabindex', '0');
     }
   });
+}
+
+/**
+ * Animate cards entry into viewport
+ * @param {HTMLElement} cell - The card cell to animate
+ */
+function animateCardsEntry(cell) {
+  const delay = parseInt(cell.getAttribute('data-animation-delay'), 10) || 0;
+
+  setTimeout(() => {
+    cell.style.transition = `opacity ${config.animationDuration}ms ease-out, transform ${config.animationDuration}ms ease-out`;
+    cell.style.opacity = '1';
+    cell.style.transform = 'translateY(0)';
+  }, delay);
 }
 
 /**
@@ -265,18 +279,18 @@ function addScrollAnimations(block) {
   // Create intersection observer for animation trigger
   const observerOptions = {
     threshold: 0.2,
-    rootMargin: '0px 0px -10% 0px'
+    rootMargin: '0px 0px -10% 0px',
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         animateCardsEntry(entry.target);
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
-  
+
   // Observe each card cell for animation
   const cells = block.querySelectorAll('.facts-figures-cards-cell');
   cells.forEach((cell, index) => {
@@ -284,49 +298,6 @@ function addScrollAnimations(block) {
     cell.style.transform = 'translateY(40px)';
     cell.setAttribute('data-animation-delay', index * 100);
     observer.observe(cell);
-  });
-}
-
-/**
- * Animate cards entry into viewport
- * @param {HTMLElement} cell - The card cell to animate
- */
-function animateCardsEntry(cell) {
-  const delay = parseInt(cell.getAttribute('data-animation-delay')) || 0;
-  
-  setTimeout(() => {
-    cell.style.transition = `opacity ${config.animationDuration}ms ease-out, transform ${config.animationDuration}ms ease-out`;
-    cell.style.opacity = '1';
-    cell.style.transform = 'translateY(0)';
-  }, delay);
-}
-
-/**
- * Add analytics tracking
- * @param {HTMLElement} block - The block DOM element
- */
-function addAnalyticsTracking(block) {
-  // Track block impression
-  const impressionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        trackBlockImpression(block);
-        impressionObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  impressionObserver.observe(block);
-  
-  // Track interactions with cards
-  const cells = block.querySelectorAll('.facts-figures-cards-cell');
-  cells.forEach((cell, index) => {
-    const links = cell.querySelectorAll('a');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        trackCardInteraction(block, cell, index, e);
-      });
-    });
   });
 }
 
@@ -339,7 +310,7 @@ function trackBlockImpression(block) {
     window.dataLayer.push({
       event: 'block_impression',
       block_type: 'facts-figures-cards',
-      block_variant: getBlockVariant(block)
+      block_variant: getBlockVariant(block),
     });
   }
 }
@@ -349,9 +320,8 @@ function trackBlockImpression(block) {
  * @param {HTMLElement} block - The block DOM element
  * @param {HTMLElement} cell - The card cell
  * @param {number} index - The card index
- * @param {Event} event - The click event
  */
-function trackCardInteraction(block, cell, index, event) {
+function trackCardInteraction(block, cell, index) {
   if (window.dataLayer) {
     const title = cell.querySelector('.facts-figures-cards-title');
     window.dataLayer.push({
@@ -359,48 +329,64 @@ function trackCardInteraction(block, cell, index, event) {
       block_type: 'facts-figures-cards',
       card_index: index,
       card_title: title ? title.textContent.trim() : '',
-      interaction_type: 'click'
+      interaction_type: 'click',
     });
   }
 }
 
 /**
- * Get block options from CSS classes
+ * Add analytics tracking
  * @param {HTMLElement} block - The block DOM element
- * @returns {string[]} Array of option classes
  */
-function getBlockOptions(block) {
-  return [...block.classList].filter(c => 
-    !['block', 'facts-figures-cards', 'facts-figures-cards-container'].includes(c)
-  );
+function addAnalyticsTracking(block) {
+  // Track block impression
+  const impressionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        trackBlockImpression(block);
+        impressionObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  impressionObserver.observe(block);
+
+  // Track interactions with cards
+  const cells = block.querySelectorAll('.facts-figures-cards-cell');
+  cells.forEach((cell, index) => {
+    const links = cell.querySelectorAll('a');
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        trackCardInteraction(block, cell, index);
+      });
+    });
+  });
 }
 
 /**
- * Get variant from block classes
- * @param {string[]} classes - Array of CSS classes
- * @returns {string} The variant name
- */
-function getVariantFromClasses(classes) {
-  const variantClass = classes.find(c => c.startsWith('variant-'));
-  return variantClass ? variantClass.replace('variant-', '') : 'h4-default';
-}
-
-/**
- * Get size from block classes
- * @param {string[]} classes - Array of CSS classes
- * @returns {string} The size name
- */
-function getSizeFromClasses(classes) {
-  const sizeClass = classes.find(c => c.startsWith('col-'));
-  return sizeClass || 'col-4';
-}
-
-/**
- * Get block variant for analytics
+ * Main decoration function for the Facts and Figures Cards block
  * @param {HTMLElement} block - The block DOM element
- * @returns {string} The block variant
  */
-function getBlockVariant(block) {
-  const options = getBlockOptions(block);
-  return options.length > 0 ? options.join(' ') : 'default';
+export default function decorate(block) {
+  if (!block) return;
+
+  try {
+    // Add semantic classes and structure
+    addSemanticClasses(block);
+
+    // Process card content based on variant
+    processCardContent(block);
+
+    // Add accessibility features
+    addAccessibilityFeatures(block);
+
+    // Add animation support
+    addScrollAnimations(block);
+
+    // Add analytics tracking
+    addAnalyticsTracking(block);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Facts and Figures Cards block initialization failed:', error);
+  }
 }

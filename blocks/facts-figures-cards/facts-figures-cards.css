@@ -52,7 +52,7 @@
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   text-align: center;
 }
 
@@ -110,11 +110,11 @@
 
 /* Highlighted variant with blue gradient */
 .facts-figures-cards-cell.variant-h3-highlighted {
-  background: linear-gradient(200deg, #0c2863, rgb(159, 0, 165));
+  background: linear-gradient(200deg, #0c2863, rgb(159 0 165));
 }
 
 .facts-figures-cards-cell.highlighted {
-  background: linear-gradient(200deg, #0c2863, rgb(159, 0, 165));
+  background: linear-gradient(200deg, #0c2863, rgb(159 0 165));
 }
 
 .facts-figures-cards-cell.highlighted .facts-figures-cards-title,
@@ -131,20 +131,20 @@
 /* Card hover effects */
 .facts-figures-cards-cell:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
 }
 
 /* Character count overflow warning */
 .facts-figures-cards-text[data-overflow="true"] {
   border-left: 3px solid #fd4100;
   padding-left: 1rem;
-  background-color: rgba(253, 65, 0, 0.05);
+  background-color: rgb(253 65 0 / 5%);
 }
 
 /* Responsive Design */
 
 /* Tablet styles */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .facts-figures-cards-row {
     flex-wrap: wrap;
     gap: 2rem;
@@ -179,7 +179,7 @@
 }
 
 /* Mobile styles */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .block.facts-figures-cards {
     margin: 1.5rem 0;
   }
@@ -226,7 +226,7 @@
 }
 
 /* Small mobile styles */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .facts-figures-cards-cell {
     padding: 1.5rem;
     min-height: 140px;
@@ -263,6 +263,7 @@
 }
 
 /* High contrast mode support */
+/* stylelint-disable-next-line media-feature-name-value-no-unknown */
 @media (prefers-contrast: high) {
   .facts-figures-cards-cell {
     border: 2px solid var(--text-color);
@@ -286,6 +287,7 @@
     display: block;
   }
   
+  /* stylelint-disable-next-line no-duplicate-selectors */
   .facts-figures-cards-cell {
     margin-bottom: 1rem;
     page-break-inside: avoid;
@@ -322,7 +324,7 @@
 
 .facts-figures-cards-cell.variant-h3-highlighted a:hover,
 .facts-figures-cards-cell.highlighted a:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255 255 255 / 80%);
 }
 
 /* Grid layout alternatives */
