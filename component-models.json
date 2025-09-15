@@ -197,33 +197,8 @@
         "value": ""
       },
       {
-        "component": "select",
-        "name": "classes",
-        "label": "Card Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "H4 Default",
-            "value": "h4-default"
-          },
-          {
-            "name": "H3 Highlighted",
-            "value": "h3-highlighted"
-          },
-          {
-            "name": "H5 Short Text",
-            "value": "h5-short"
-          },
-          {
-            "name": "H5 Long Text",
-            "value": "h5-long"
-          }
-        ],
-        "value": "h4-default"
-      },
-      {
         "component": "multiselect",
-        "name": "options",
+        "name": "classes",
         "label": "Card Options",
         "valueType": "string",
         "options": [
