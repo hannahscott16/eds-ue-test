@@ -61,7 +61,7 @@
         },
         {
           "component": "multiselect",
-          "name": "classes",
+          "name": "options",
           "label": "Card Options",
           "valueType": "string",
           "options": [
