@@ -36,8 +36,8 @@
         },
         {
           "component": "select",
-          "name": "variant",
-          "label": "Card Variant",
+          "name": "classes",
+          "label": "Card Classes",
           "valueType": "string",
           "options": [
             {
@@ -58,23 +58,6 @@
             }
           ],
           "value": "h4-default"
-        },
-        {
-          "component": "select",
-          "name": "size",
-          "label": "Card Size",
-          "valueType": "string",
-          "options": [
-            {
-              "name": "4 Columns",
-              "value": "col-4"
-            },
-            {
-              "name": "5 Columns",
-              "value": "col-5"
-            }
-          ],
-          "value": "col-4"
         },
         {
           "component": "multiselect",
