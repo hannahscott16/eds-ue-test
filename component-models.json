@@ -81,6 +81,109 @@
     ]
   },
   {
+    "id": "text",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Text Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Size",
+            "children": [
+              {
+                "name": "Small",
+                "value": "text-small"
+              },
+              {
+                "name": "Large",
+                "value": "text-large"
+              },
+              {
+                "name": "Extra Large",
+                "value": "text-xl"
+              }
+            ]
+          },
+          {
+            "name": "Alignment",
+            "children": [
+              {
+                "name": "Left",
+                "value": "text-left"
+              },
+              {
+                "name": "Center",
+                "value": "text-center"
+              },
+              {
+                "name": "Right",
+                "value": "text-right"
+              }
+            ]
+          },
+          {
+            "name": "Style",
+            "children": [
+              {
+                "name": "Highlighted",
+                "value": "text-highlighted"
+              },
+              {
+                "name": "Subtle",
+                "value": "text-subtle"
+              },
+              {
+                "name": "Bold",
+                "value": "text-bold"
+              },
+              {
+                "name": "Italic",
+                "value": "text-italic"
+              }
+            ]
+          },
+          {
+            "name": "Background",
+            "children": [
+              {
+                "name": "Light Background",
+                "value": "bg-light"
+              },
+              {
+                "name": "Dark Background",
+                "value": "bg-dark"
+              },
+              {
+                "name": "Accent Background",
+                "value": "bg-accent"
+              }
+            ]
+          },
+          {
+            "name": "Spacing",
+            "children": [
+              {
+                "name": "Compact",
+                "value": "spacing-compact"
+              },
+              {
+                "name": "Comfortable",
+                "value": "spacing-comfortable"
+              },
+              {
+                "name": "Spacious",
+                "value": "spacing-spacious"
+              }
+            ]
+          }
+        ],
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "button",
     "fields": [
       {
