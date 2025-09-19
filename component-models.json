@@ -180,64 +180,6 @@
     ]
   },
   {
-    "id": "facts-figures-cards",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Card Title",
-        "valueType": "string",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "label": "Card Text",
-        "valueType": "string",
-        "value": ""
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Card Options",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Layout",
-            "children": [
-              {
-                "name": "Default",
-                "value": ""
-              },
-              {
-                "name": "Highlighted",
-                "value": "highlighted"
-              },
-              {
-                "name": "Centered",
-                "value": "centered"
-              }
-            ]
-          },
-          {
-            "name": "Background",
-            "children": [
-              {
-                "name": "Warm White Gradient",
-                "value": "warm-gradient"
-              },
-              {
-                "name": "Blue Gradient",
-                "value": "blue-gradient"
-              }
-            ]
-          }
-        ],
-        "value": ""
-      }
-    ]
-  },
-  {
     "id": "fragment",
     "fields": [
       {
