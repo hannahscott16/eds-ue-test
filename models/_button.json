@@ -52,6 +52,25 @@
               "value": "secondary"
             }
           ]
+        },
+        {
+          "component": "select",
+          "name": "colour",
+          "label": "Colour",
+          "options": [
+            {
+              "name": "default",
+              "value": ""
+            },
+            {
+              "name": "Blue",
+              "value": "button-blue"
+            },
+            {
+              "name": "White",
+              "value": "button-white"
+            }
+          ]
         }
       ]
     }
